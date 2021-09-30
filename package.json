@@ -1,0 +1,28 @@
+{
+  "name": "catframepromatch",
+  "version": "1.0.0",
+  "description": "A patter matcher module for the \"CatFrame Transform\" Framework written in prolog",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "pattern matching",
+    "prolog",
+    "CatFrame"
+  ],
+  "author": "Kai Biermeier",
+  "license": "MIT",
+  "dependencies": {
+    "catframe": "https://github.com/caiusno1/CatFrame",
+    "tau-prolog": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.1",
+    "jest": "^27.2.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
