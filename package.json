@@ -14,7 +14,7 @@
   "author": "Kai Biermeier",
   "license": "MIT",
   "dependencies": {
-    "catframe": "https://github.com/caiusno1/CatFrame",
+    "catframe": "github:caiusno1/CatFrame",
     "tau-prolog": "^0.3.1"
   },
   "devDependencies": {

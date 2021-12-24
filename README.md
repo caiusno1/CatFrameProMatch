@@ -1,2 +1,2 @@
 # CatFrameProMatch
-A pattermatcher for the CatFrame framework (based on Tau Prolog)
+A pattern-matcher for the CatFrame framework (based on Tau Prolog)
