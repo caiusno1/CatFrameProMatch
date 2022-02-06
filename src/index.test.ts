@@ -15,7 +15,7 @@ function flatObjCompare(a:any,b:any){
 
 describe('CatFrameProMatch unit tests', () => {
     test('simple ID match', done  => {
-        const a = new CatFrameProMatch();
+        const a = new CatFrameProMatch<object, object>();
         const G = new Graph<object,object>();
         const edge1 = {e:1}
         const edge2 = {e:2}
@@ -23,14 +23,14 @@ describe('CatFrameProMatch unit tests', () => {
         const node2 = {v:2}
         const node3 = {v:3}
         const node4 = {v:4}
-        G.edgeSet = new CatSet(flatObjCompare,edge1,edge2)
-        G.nodeSet = new CatSet(flatObjCompare,node4,node1,node2,node3)
+        G.edgeSet = new CatSet<object>(flatObjCompare,edge1,edge2)
+        G.nodeSet = new CatSet<object>(flatObjCompare,node4,node1,node2,node3)
         const srcMap = new StructureMap<object>([[edge1,node1],[edge2,node2]],"productionMap")
         const trgMap = new StructureMap<object>([[edge1,node2],[edge2,node3]],"productionMap")
         G.src = srcMap
         G.trg = trgMap
 
-        const cat = new GraphCat(flatObjCompare,flatObjCompare)
+        const cat = new GraphCat<object,object>(flatObjCompare,flatObjCompare)
         const id = cat.id(G) as GraphMorphism<object,object>
         a.matchGraph(G,G, (a: GraphMorphism<object,object>| false) => {
             if(a !== false){
@@ -54,7 +54,7 @@ describe('CatFrameProMatch unit tests', () => {
     });
     test('simple ID match (tgraph)', done  => {
         jest.setTimeout(30000);
-        const a = new CatFrameProMatch();
+        const a = new CatFrameProMatch<object,object>();
 
         const TG = new Graph<object,object>();
         const tedge1 = {e:21}
@@ -62,8 +62,8 @@ describe('CatFrameProMatch unit tests', () => {
         const tnode1 = {v:1}
         const tnode2 = {v:2}
         const tnode3 = {v:3}
-        TG.edgeSet = new CatSet(flatObjCompare,tedge1,tedge2)
-        TG.nodeSet = new CatSet(flatObjCompare,tnode1,tnode2,tnode3)
+        TG.edgeSet = new CatSet<object>(flatObjCompare,tedge1,tedge2)
+        TG.nodeSet = new CatSet<object>(flatObjCompare,tnode1,tnode2,tnode3)
         const srcMapTG = new StructureMap<object>([[tedge2,tnode1],[tedge1,tnode2]],"productionMap")
         const trgMapTG = new StructureMap<object>([[tedge2,tnode2],[tedge1,tnode3]],"productionMap")
         TG.src = srcMapTG
@@ -76,8 +76,8 @@ describe('CatFrameProMatch unit tests', () => {
         const node2 = {v:2}
         const node3 = {v:3}
         const node4 = {v:4}
-        G.edgeSet = new CatSet(flatObjCompare,edge1,edge2)
-        G.nodeSet = new CatSet(flatObjCompare,node4,node1,node2,node3)
+        G.edgeSet = new CatSet<object>(flatObjCompare,edge1,edge2)
+        G.nodeSet = new CatSet<object>(flatObjCompare,node4,node1,node2,node3)
         const srcMap = new StructureMap<object>([[edge1,node1],[edge2,node2]],"productionMap")
         const trgMap = new StructureMap<object>([[edge1,node2],[edge2,node3]],"productionMap")
         G.src = srcMap
@@ -87,10 +87,10 @@ describe('CatFrameProMatch unit tests', () => {
         const nodeMorph = new StructureMap([[node1,tnode1],[node2,tnode2],[node3,tnode3],[node4,tnode1]])
 
         const tmorph = new GraphMorphism(G,TG,nodeMorph,edgeMorph)
-        const TyG = new TGraph(tmorph)
+        const TyG = new TGraph<object,object>(tmorph)
 
-        const gcat = new GraphCat(flatObjCompare,flatObjCompare)
-        const cat = new TGraphCat(gcat)
+        const gcat = new GraphCat<object,object>(flatObjCompare,flatObjCompare)
+        const cat = new TGraphCat<object,object>(gcat)
         const id = cat.id(TyG) as TGraphMorphism<object,object>
         let counter = 0
         a.matchTGraph(TyG,TyG, (a: TGraphMorphism<object,object>| false) => {

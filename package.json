@@ -2,7 +2,6 @@
   "name": "catframepromatch",
   "version": "0.0.1",
   "description": "A patter matcher module for the \"CatFrame Transform\" Framework written in prolog",
-  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
@@ -24,5 +23,10 @@
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
-  }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ]
 }
