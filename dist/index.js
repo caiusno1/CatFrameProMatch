@@ -59,7 +59,7 @@ match(${head}) :- ${body} .`.trim();
             success: function () {
                 // console.log("yes")
                 // console.log(`match(${graphPattern.nodeSet.map((ele) => patterMatcher.toIndex(ele,graphPattern.nodeSet)).join(",")},${graphPattern.edgeSet.map((ele,idx) => "E_"+idx).join(",")}).`)
-                session.query(`match(${graphPattern.nodeSet.map((ele) => patterMatcher.toIndex(ele, graphPattern.nodeSet)).join(",")},${graphPattern.edgeSet.map((ele, idx) => "E_" + idx).join(",")}).`, {
+                session.query(`match(${head}).`, {
                     success: function (goal) {
                         if (callback) {
                             session.answers((x) => {
