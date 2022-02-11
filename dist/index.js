@@ -47,9 +47,14 @@ class CatFrameProMatch {
         // console.log(ProPatternID)
         const ProGraph = graph.edgeSet.map((edge, idx) => "edge(e_" + idx + "," + this.toIndex(graph.src.get(edge), graph.nodeSet).toLowerCase() + "," + this.toIndex(graph.trg.get(edge), graph.nodeSet).toLowerCase() + ")");
         const patterMatcher = this;
+        let head = (graphPattern.nodeSet.length > 0 ? graphPattern.nodeSet.map((ele) => patterMatcher.toIndex(ele, graphPattern.nodeSet)).join(",") : "_");
+        head = head + ", " + (graphPattern.edgeSet.length > 0 ? graphPattern.edgeSet.map((ele, idx) => "E_" + idx).join(",") : "_");
+        let body = SelectNodes;
+        body = body + ((SelectNodes.length > 0 && ProPattern.length > 0) ? "," + ProPattern.join(",") : ProPattern);
+        body = body + (((SelectNodes.length > 0 || ProPattern.length > 0) && ProPatternID.join(", ").length > 0) ? "," + ProPatternID.join(",") : ProPatternID.join(","));
         let ProProgram = `:- use_module(library(lists)).\n              
-${ProGraph.join(". \n")}. 
-match(${graphPattern.nodeSet.map((ele) => patterMatcher.toIndex(ele, graphPattern.nodeSet)).join(",")},${graphPattern.edgeSet.map((ele, idx) => "E_" + idx).join(",")}) :- ${SelectNodes} , ${ProPattern.join(",")} , ${ProPatternID.join(",")}.`.trim();
+${ProGraph.join(". \n")}.
+match(${head}) :- ${body} .`.trim();
         session.consult(ProProgram, {
             success: function () {
                 // console.log("yes")
